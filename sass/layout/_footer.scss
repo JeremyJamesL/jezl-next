@@ -1,0 +1,13 @@
+.footer {
+    background-color: $color-secondary;
+    color: white;
+    padding-top: $gutter-vertical-small;
+    padding-bottom: $gutter-vertical-small;
+    text-align: center;
+
+    &__link {
+        color: $color-primary;
+        font-weight: bold;
+    }
+
+}
