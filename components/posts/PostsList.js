@@ -10,7 +10,7 @@ function PostsList(props) {
     return ( 
         <li>
             <article className="single-post">
-                <h3 className="single-post__title"><a href={`/posts/${post.slug}`} className="link link--project">{post.title}</a></h3>
+                <h3 className="single-post__title"><a href={`/blog/${post.slug}`} className="link link--project">{post.title}</a></h3>
                 <time className="single-post__date">{dateToHumanReadable}</time>
             </article>
         </li>
