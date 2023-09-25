@@ -1,0 +1,15 @@
+@import "../base/typography";
+
+.article {
+    p {
+        @extend .paragraph;
+    }
+
+    h1 {
+        @extend .heading--primary;
+    }
+
+    h2 {
+        @extend .heading--secondary;
+    }
+}

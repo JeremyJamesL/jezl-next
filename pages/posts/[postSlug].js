@@ -1,7 +1,30 @@
+import parse from 'html-react-parser';
+
 function SinglePost(props) {
+  
+  const postMeta = props.postData;
+  
   return (
-    <div>
-        single post
+    <div className="container">
+        <article className="article">
+
+            <section className="article__header">
+                <h1 className="article__title">{postMeta.title}</h1>
+                <div className="article__date_tags">
+                    <time className="article__date">{postMeta.date}</time>
+                    <span className="article__tags">
+                        <ul className="tags">
+                            {postMeta.categories.nodes.map(tag => <li className="tags__tag">{tag.name}</li>)}
+                        </ul>
+                    </span>
+                </div>
+            </section>
+
+            <section className="article__body">
+                {parse(postMeta.content)}
+            </section>
+        </article>
+
     </div>
   )
 }
@@ -24,7 +47,7 @@ export async function getStaticPaths() {
     });
 
     const paths = await data.json();
-    // console.log(paths.data.posts.nodes, 'logging paths')
+
     const pathsAsProps = paths.data.posts.nodes.map((item) => {
         return {
             params: {
@@ -39,11 +62,58 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps() {
-        // Get single WP post
+export async function getStaticProps(context) {
+        // Get single WP post  
+        const data = await fetch(process.env.WORDPRESS_API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                query: `{
+                    post(
+                      idType: SLUG
+                      id: "vestibulum-est-consequat-aliquet-vel-faucibus-magna-urna"
+                    ) {
+                      title
+                      slug
+                      date
+                      content
+                      categories {
+                        nodes {
+                          name
+                        }
+                      }
+                    }
+                  }`
+            })
+        });
 
+        const post = await data.json();
+
+        return {
+            props: {
+                postData: post.data.post
+            }
+        }
 }
 
 
 export default SinglePost;
 
+// query MyQuery2 {
+//     post(
+//       idType: SLUG
+//       id: "vestibulum-est-consequat-aliquet-vel-faucibus-magna-urna"
+//     ) {
+//       title
+//       slug
+//       date
+//       content
+//       categories {
+//         nodes {
+//           name
+//         }
+//       }
+//     }
+//   }
