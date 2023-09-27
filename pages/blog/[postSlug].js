@@ -3,6 +3,11 @@ import parse from 'html-react-parser';
 function SinglePost(props) {
   
   const postMeta = props.postData;
+  const humanReadableDate = new Date(postMeta.date).toLocaleDateString('en-GB', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
   
   return (
     <div className="container">
@@ -11,10 +16,10 @@ function SinglePost(props) {
             <section className="article__header">
                 <h1 className="article__title">{postMeta.title}</h1>
                 <div className="article__date_tags">
-                    <time className="article__date">{postMeta.date}</time>
+                    <time className="article__date">{humanReadableDate}</time>
                     <span className="article__tags">
                         <ul className="tags">
-                            {postMeta.categories.nodes.map(tag => <li className="tags__tag">{tag.name}</li>)}
+                            {postMeta.categories.nodes.map(tag => <li className="tag">{tag.name}</li>)}
                         </ul>
                     </span>
                 </div>
@@ -63,6 +68,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
+
         // Get single WP post  
         const data = await fetch(process.env.WORDPRESS_API_URL, {
             method: "POST",
@@ -73,7 +79,7 @@ export async function getStaticProps(context) {
                 query: `{
                     post(
                       idType: SLUG
-                      id: "vestibulum-est-consequat-aliquet-vel-faucibus-magna-urna"
+                      id: "${context.params.postSlug}"
                     ) {
                       title
                       slug
@@ -88,8 +94,9 @@ export async function getStaticProps(context) {
                   }`
             })
         });
-
         const post = await data.json();
+
+
 
         return {
             props: {
@@ -97,7 +104,6 @@ export async function getStaticProps(context) {
             }
         }
 }
-
 
 export default SinglePost;
 

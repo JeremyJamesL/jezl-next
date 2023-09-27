@@ -1,9 +1,9 @@
+import Link from "next/link";
 import PostsList from "@/components/posts/PostsList";
 import ProjectsList from "@/components/projects/ProjectsList";
 
 function Homepage({recentPosts, featuredProjects}) {
-    console.log(featuredProjects);
-
+    
     return (
         <div className="container">
             <section>
@@ -20,7 +20,7 @@ function Homepage({recentPosts, featuredProjects}) {
                 {/* Wordpress posts go here */}
                 <PostsList posts={recentPosts} />
 
-                <div className="txt-center"><a href="" className="link link--project">👉 See all blog posts</a></div>
+                <div className="txt-center"><Link href="/projects" className="link link--project">👉 See all blog posts</Link></div>
                 
             </section>
 
@@ -30,7 +30,7 @@ function Homepage({recentPosts, featuredProjects}) {
                 <h2 className="heading heading--secondary">Featured projects</h2>
                 {/* Wordpress projects go here */}
                 <ProjectsList projects={featuredProjects} />
-                <div className="txt-center"><a href="" className="link">👉 See all projects</a></div>
+                <div className="txt-center"><Link href="/projects" className="link link--project">👉 See all projects</Link></div>
             </section>
 
         </div>

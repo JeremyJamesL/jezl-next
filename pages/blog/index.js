@@ -3,6 +3,7 @@ import PostsList from "@/components/posts/PostsList"
 function BlogIndexPage(props) {
   return (
     <div className="container">
+        <h1 className="heading heading--primary txt-center">Blog posts</h1>
         <PostsList posts={props.recentPosts}/>
     </div>
   )

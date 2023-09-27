@@ -1,4 +1,5 @@
-import Image from "next/image"
+import Image from "next/image";
+import Tags from "../UI/Tags";
 
 function ProjectsList(props) {
   const renderedProjects = (project) => {
@@ -12,8 +13,11 @@ function ProjectsList(props) {
                   alt={project.projectFields.projectImage.altText}
                   className="single-project__img"
               />
-              <h3 className="single-project__title"><a href="" className="link link--project">{project.title}</a></h3>
+              <h3 className="single-project__title"><a href={project.projectFields.projectUrl} className="link link--project">{project.title}</a></h3>
               <p className="paragraph">{project.projectFields.projectDescription}</p>
+              {props.type === 'project index page' && 
+                  <Tags tags={project.tags}/>
+              }
           </article>
       </li>
     )
