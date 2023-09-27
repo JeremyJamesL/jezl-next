@@ -35,7 +35,7 @@ function SinglePost(props) {
 }
 
 export async function getStaticPaths() {
-    const data = await fetch('https://jeremyl56.sg-host.com/graphql', {
+    const data = await fetch(process.env.WORDPRESS_API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
