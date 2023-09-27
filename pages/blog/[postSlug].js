@@ -35,7 +35,7 @@ function SinglePost(props) {
 }
 
 export async function getStaticPaths() {
-    const data = await fetch(process.env.WORDPRESS_API_URL, {
+    const data = await fetch('https://jeremyl56.sg-host.com/graphql', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -96,8 +96,6 @@ export async function getStaticProps(context) {
         });
         const post = await data.json();
 
-
-
         return {
             props: {
                 postData: post.data.post
@@ -106,20 +104,3 @@ export async function getStaticProps(context) {
 }
 
 export default SinglePost;
-
-// query MyQuery2 {
-//     post(
-//       idType: SLUG
-//       id: "vestibulum-est-consequat-aliquet-vel-faucibus-magna-urna"
-//     ) {
-//       title
-//       slug
-//       date
-//       content
-//       categories {
-//         nodes {
-//           name
-//         }
-//       }
-//     }
-//   }
