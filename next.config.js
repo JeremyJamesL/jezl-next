@@ -5,6 +5,10 @@ const nextConfig = {
             {
                 protocol: "http",
                 hostname: "jeremyl56.sg-host.com"
+            },
+            {
+                protocol: "https",
+                hostname: "jeremyl56.sg-host.com"
             }
         ]
     }
