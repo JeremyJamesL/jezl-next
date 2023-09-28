@@ -56,7 +56,7 @@ export async function getStaticPaths() {
     const pathsAsProps = paths.data.posts.nodes.map((item) => {
         return {
             params: {
-                postSlug: item.slug
+                postslug: item.slug
             }
         }
     })
@@ -79,7 +79,7 @@ export async function getStaticProps(context) {
                 query: `{
                     post(
                       idType: SLUG
-                      id: "${context.params.postSlug}"
+                      id: "${context.params.postslug}"
                     ) {
                       title
                       slug
