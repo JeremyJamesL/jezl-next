@@ -1,4 +1,6 @@
 import Link from "next/link";
+import HeadSEO from "@/components/data/HeadSEO";
+import SEO from "@/components/data/SEO";
 import PostsList from "@/components/posts/PostsList";
 import ProjectsList from "@/components/projects/ProjectsList";
 
@@ -6,11 +8,12 @@ function Homepage({recentPosts, featuredProjects}) {
     
     return (
         <div className="container">
+            <HeadSEO title="Homepage" description={SEO.description}/>
             <section>
                 <h1 className="heading heading--primary">Hello, i'm Jeremy James 👋</h1>
-                <p className="paragraph">I'm a solutions engineer and frontend enthusiast, currently working at <a href="https://algolia.com">Algolia</a>.</p>
-                <p className="paragraph">I love sharing what I know through my blog, teaching and speaking at conferences. If you want to learn more about what I do, look at some of the project I like building</p>
-                <p className="paragraph">In my spare time I like learning chess gambits (Evans gambit is my favourite) and theory, solo bike touring (best way to see the world). Currently learning Italian</p>
+                <p className="paragraph">I'm a solutions engineer and self-taught web dev, currently working at <a href="https://algolia.com">Algolia</a>.</p>
+                <p className="paragraph">I write here mainly for myself, so I can clarify my thoughts and keep a log of my learnings and for a place to show the mini projects I work on.</p>
+                <p className="paragraph">In my spare time I like learning chess gambits (Evans gambit is my favourite) and theory, solo bike touring (best way to see the world). Currently learning Italian 🇮🇹 </p>
             </section>
             <hr />
 
@@ -99,7 +102,8 @@ export async function getStaticProps() {
         props: {
             recentPosts,
             featuredProjects
-        }
+        },
+        revalidate: 60
     }
 
 }

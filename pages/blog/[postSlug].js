@@ -1,4 +1,5 @@
 import parse from 'html-react-parser';
+import HeadSEO from '@/components/data/HeadSEO';
 
 function SinglePost(props) {
   
@@ -11,6 +12,7 @@ function SinglePost(props) {
   
   return (
     <div className="container">
+        <HeadSEO title={postMeta.title} description={postMeta.seo.seoDescription}/>
         <article className="article">
 
             <section className="article__header">
@@ -85,6 +87,9 @@ export async function getStaticProps(context) {
                       slug
                       date
                       content
+                      seo {
+                        seoDescription
+                      }
                       categories {
                         nodes {
                           name
@@ -99,7 +104,8 @@ export async function getStaticProps(context) {
         return {
             props: {
                 postData: post.data.post
-            }
+            },
+            revalidate: 60,
         }
 }
 

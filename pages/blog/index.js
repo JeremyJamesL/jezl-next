@@ -1,8 +1,10 @@
-import PostsList from "@/components/posts/PostsList"
+import HeadSEO from "@/components/data/HeadSEO";
+import PostsList from "@/components/posts/PostsList";
 
 function BlogIndexPage(props) {
   return (
     <div className="container">
+        <HeadSEO title="blog posts" description="blog posts home" />
         <h1 className="heading heading--primary txt-center">Blog posts</h1>
         <PostsList posts={props.recentPosts}/>
     </div>
@@ -39,7 +41,8 @@ export async function getStaticProps() {
     return {
         props: {
             recentPosts,
-        }
+        },
+        revalidate: 60
     }
 
 }

@@ -1,8 +1,10 @@
-import ProjectsList from "@/components/projects/ProjectsList"
+import ProjectsList from "@/components/projects/ProjectsList";
+import HeadSEO from "@/components/data/HeadSEO";
 
 function ProjectsIndexPage(props) {
   return (
     <div className="container">
+        <HeadSEO title="project" description="projects home" />
         <h1 className="heading heading--primary txt-center">Projects</h1>
         <ProjectsList projects={props.allProjects} type="project index page"/>
     </div>
@@ -51,7 +53,8 @@ export async function getStaticProps() {
     return {
         props: {
             allProjects
-        }
+        },
+        revalidate: 60
     }
 
 }
