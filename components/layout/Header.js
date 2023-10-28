@@ -8,7 +8,7 @@ function Header() {
             <div className="container header__inner">
                 <div className="header__left">
                     <Image
-                        src="http://jeremyl56.sg-host.com/wp-content/uploads/2023/09/1517277266645-2.jpeg"
+                        src="https://jlwp.online/wp-content/uploads/2023/09/1517277266645-2.jpeg"
                         width={80}
                         height={80}
                         className="header__headshot"

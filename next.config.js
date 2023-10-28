@@ -4,11 +4,11 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "http",
-                hostname: "jeremyl56.sg-host.com"
+                hostname: "jlwp.online"
             },
             {
                 protocol: "https",
-                hostname: "jeremyl56.sg-host.com"
+                hostname: "jlwp.online"
             }
         ]
     }
